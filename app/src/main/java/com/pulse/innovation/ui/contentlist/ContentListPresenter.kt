@@ -2,8 +2,6 @@ package com.pulse.innovation.ui.contentlist
 
 import android.util.Log
 import com.pulse.innovation.data.model.Content
-import com.pulse.innovation.data.model.ContentListWrapper
-import com.pulse.innovation.data.network.ContentApi
 import com.pulse.innovation.domain.LoadContentListUseCase
 import com.pulse.innovation.ui.BasePresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
