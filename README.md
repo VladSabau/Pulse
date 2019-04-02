@@ -1,12 +1,12 @@
 # Pulse
-Goal » 
+<b>Goal</b>
 Please build an app which retrieves and displays the list of items described in the data 
-provided by Content List Endpoint below. When an item in the list is tapped the app 
+provided by <b>Content List Endpoint</b> below. When an item in the list is tapped the app 
 should transition to a detail view which displays the same specific item data together 
-with the additional data provided by the Content Detail Endpoint. 
+with the additional data provided by the <b>Content Detail Endpoint</b>. 
  
  
-Requirements » 
+<b>Requirements</b>
 ● Please make assumptions regarding task details. 
 ● Please feel free to use any frameworks provided by Android and/or the ones 
 listed below if required for your solution but no other third party frameworks 
@@ -20,9 +20,9 @@ listed below if required for your solution but no other third party frameworks
 ● Please respond with a zip containing a Gradle based project and a rough 
 estimate of time spent. 
 
-Resources » 
+<b>Resources</b>
 Content List Endpoint: 
 http://dynamic.pulselive.com/test/native/contentList.json 
  
-Content Detail Endpoint ([id] should be replaced with item id): 
+Content Detail Endpoint ([id] should be replaced with item id): 
 http://dynamic.pulselive.com/test/native/content/[id].json 
