@@ -7,4 +7,6 @@ import com.pulse.innovation.data.model.Content
  */
 interface ContentListView {
     fun updateList(contentList: List<Content>)
+
+    fun showProgress(show: Boolean)
 }

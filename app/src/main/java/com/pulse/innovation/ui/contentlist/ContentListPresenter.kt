@@ -22,8 +22,7 @@ class ContentListPresenter @Inject constructor(private val contentListUseCase: L
 
     private fun loadContentList() {
         subscribe(contentListUseCase.loadContentList()
-            ?.subscribeOn(Schedulers.io())
-            ?.observeOn(AndroidSchedulers.mainThread())
+            ?.compose(schedulerProvider.getSchedulersForObservable())
             ?.doOnSubscribe { onRetrieveStart() }
             ?.doAfterTerminate { onRetrieveFinish() }
             ?.subscribe(
@@ -41,10 +40,10 @@ class ContentListPresenter @Inject constructor(private val contentListUseCase: L
     }
 
     private fun onRetrieveFinish() {
-        //todo
+        view.showProgress(false)
     }
 
     private fun onRetrieveStart() {
-        //todo
+        view.showProgress(true)
     }
 }
