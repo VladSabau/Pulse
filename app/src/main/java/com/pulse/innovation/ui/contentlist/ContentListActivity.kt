@@ -3,6 +3,7 @@ package com.pulse.innovation.ui.contentlist
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import com.pulse.innovation.ContentApplication
 import com.pulse.innovation.R
 import com.pulse.innovation.data.model.Content
@@ -32,5 +33,13 @@ class ContentListActivity : AppCompatActivity(), ContentListView {
 
     override fun updateList(contentList: List<Content>) {
         adapter.update(contentList)
+    }
+
+    override fun showProgress(show: Boolean) {
+        if (show) {
+            progressBar.visibility = View.VISIBLE
+        } else {
+            progressBar.visibility = View.GONE
+        }
     }
 }
