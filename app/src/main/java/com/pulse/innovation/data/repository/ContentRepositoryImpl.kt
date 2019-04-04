@@ -2,7 +2,6 @@ package com.pulse.innovation.data.repository
 
 import com.pulse.innovation.data.model.Content
 import io.reactivex.Observable
-import io.reactivex.functions.Predicate
 import javax.inject.Inject
 
 /**
@@ -18,8 +17,13 @@ class ContentRepositoryImpl @Inject constructor(private val localData: LocalData
 
     private fun getContentValid(): Observable<List<Content>>? {
         return localData.getContentList()
-            .filter(Predicate { list -> !list.isEmpty() })
-            .switchIfEmpty(fetchContentList())
+            .flatMap { contentList ->
+                return@flatMap if (contentList.isEmpty()) {
+                    fetchContentList()
+                } else {
+                    Observable.just(contentList)
+                }
+            }
     }
 
     private fun fetchContentList(): Observable<List<Content>>? {

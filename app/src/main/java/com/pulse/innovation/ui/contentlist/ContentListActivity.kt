@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class ContentListActivity : BaseActivity(), ContentListView, OnContentClickListener {
 
-    var adapter = ContentListAdapter(this)
+    private var adapter = ContentListAdapter(this)
 
     @Inject
     lateinit var presenter: ContentListPresenter
