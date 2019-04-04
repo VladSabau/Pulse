@@ -19,7 +19,7 @@ class ContentRepositoryImplTest: BaseTest() {
     private val localData = mockk<LocalData>(relaxed = true)
     private val remoteData = mockk<RemoteData>(relaxed = true)
 
-    var repository: ContentRepositoryImpl = ContentRepositoryImpl(localData, remoteData)
+    lateinit var repository: ContentRepositoryImpl
 
     val testScheduler = TestScheduler()
 

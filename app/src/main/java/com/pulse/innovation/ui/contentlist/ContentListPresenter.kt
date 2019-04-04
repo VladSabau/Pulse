@@ -1,6 +1,6 @@
 package com.pulse.innovation.ui.contentlist
 
-import android.util.Log
+import com.pulse.innovation.R
 import com.pulse.innovation.data.model.Content
 import com.pulse.innovation.domain.LoadContentUseCase
 import com.pulse.innovation.ui.BasePresenter
@@ -30,7 +30,7 @@ class ContentListPresenter @Inject constructor(private val contentUseCase: LoadC
     }
 
     private fun onRetrieveError(error: Throwable?) {
-        Log.d("Error", error.toString())
+        view.showError(R.string.load_content_list_error)
     }
 
     private fun onRetrieveSuccess(result: List<Content>?) {

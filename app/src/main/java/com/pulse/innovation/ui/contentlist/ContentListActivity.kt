@@ -2,6 +2,8 @@ package com.pulse.innovation.ui.contentlist
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.annotation.StringRes
+import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import com.pulse.innovation.ContentApplication
 import com.pulse.innovation.R
@@ -13,7 +15,8 @@ import javax.inject.Inject
 
 class ContentListActivity : BaseActivity(), ContentListView, OnContentClickListener {
 
-    var adapter = ContentListAdapter(this)
+    private var errorSnackbar: Snackbar? = null
+    private var adapter = ContentListAdapter(this)
 
     @Inject
     lateinit var presenter: ContentListPresenter
@@ -42,5 +45,10 @@ class ContentListActivity : BaseActivity(), ContentListView, OnContentClickListe
         data.putInt("content_id", contentId)
         intentMileageCredit.putExtras(data)
         startActivityForResult(intentMileageCredit, 1)
+    }
+
+    override fun showError(@StringRes errorMessage: Int) {
+        errorSnackbar = Snackbar.make(activityListLayout, errorMessage, Snackbar.LENGTH_SHORT)
+        errorSnackbar?.show()
     }
 }
