@@ -1,3 +1,4 @@
 <resources>
     <string name="load_content_list_error">Failed to load content</string>
+    <string name="load_content_by_id_failed">Failed to load content detail</string>
 </resources>

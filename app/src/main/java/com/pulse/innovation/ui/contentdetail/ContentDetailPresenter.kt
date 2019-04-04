@@ -1,6 +1,6 @@
 package com.pulse.innovation.ui.contentdetail
 
-import android.util.Log
+import com.pulse.innovation.R
 import com.pulse.innovation.data.model.Content
 import com.pulse.innovation.domain.LoadContentUseCase
 import com.pulse.innovation.ui.BasePresenter
@@ -30,7 +30,7 @@ class ContentDetailPresenter @Inject constructor(private val contentUseCase: Loa
     }
 
     private fun onRetrieveError(error: Throwable?) {
-        Log.d("Error", error.toString())
+        view.showError(R.string.load_content_by_id_failed)
     }
 
     private fun onRetrieveSuccess(content: Content?) {
