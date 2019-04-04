@@ -12,11 +12,11 @@ import com.pulse.innovation.data.model.Content
 /**
  * Created by Vlad Sabau on 02.04.19.
  */
-class ContentListAdapter: RecyclerView.Adapter<ContentListAdapter.ListViewHolder>() {
+class ContentListAdapter(listener: OnContentClickListener): RecyclerView.Adapter<ContentListAdapter.ListViewHolder>() {
 
     private var contentList: ArrayList<Content> = ArrayList()
 
-    //todo private val listener: ContentListAdapter.onContentClickListener
+    private val listener: OnContentClickListener = listener
 
     override fun getItemCount(): Int {
         return contentList.size
@@ -25,13 +25,12 @@ class ContentListAdapter: RecyclerView.Adapter<ContentListAdapter.ListViewHolder
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val content = contentList[position]
 
-        // holder!!.bind(post)
         holder.title!!.text = content.title
         holder.subtitle!!.text = content.subtitle
         holder.date!!.text = content.date
 
         holder.layout!!.setOnClickListener {
-            //todo listener.openContentDetail(content.id)
+            listener.openContentDetail(content.id)
         }
     }
 
@@ -51,9 +50,4 @@ class ContentListAdapter: RecyclerView.Adapter<ContentListAdapter.ListViewHolder
         val subtitle = itemView.findViewById<TextView>(R.id.content_subtitle)
         val date = itemView.findViewById<TextView>(R.id.content_date)
     }
-
-    interface onContentClickListener {
-        fun openContentDetail(contentId : Int)
-    }
-
 }

@@ -6,6 +6,8 @@ import io.reactivex.Observable
 /**
  * Created by Vlad Sabau on 03.04.19.
  */
-interface ContentListRepository {
+interface ContentRepository {
     fun loadContentList(): Observable<List<Content>>?
+
+    fun loadContentById(contentId: Int): Observable<Content>?
 }

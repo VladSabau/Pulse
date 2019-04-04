@@ -1,4 +1,4 @@
-package com.pulse.innovation.ui.contentlist
+package com.pulse.innovation.ui.contentdetail
 
 import android.util.Log
 import com.pulse.innovation.data.model.Content
@@ -7,19 +7,19 @@ import com.pulse.innovation.ui.BasePresenter
 import javax.inject.Inject
 
 /**
- * Created by Vlad Sabau on 02.04.19.
+ * Created by Vlad Sabau on 03.04.19.
  */
-class ContentListPresenter @Inject constructor(private val contentUseCase: LoadContentUseCase): BasePresenter() {
+class ContentDetailPresenter @Inject constructor(private val contentUseCase: LoadContentUseCase): BasePresenter() {
 
-    private lateinit var view: ContentListView
+    private lateinit var view: ContentDetailView
 
-    fun attachView(view: ContentListView) {
+    fun attachView(view: ContentDetailView) {
         this.view = view
         loadContentList()
     }
 
     private fun loadContentList() {
-        subscribe(contentUseCase.loadContentList()
+        subscribe(contentUseCase.loadContentDetail(view.getContentId())
             ?.compose(schedulerProvider.getSchedulersForObservable())
             ?.doOnSubscribe { onRetrieveStart() }
             ?.doAfterTerminate { onRetrieveFinish() }
@@ -33,8 +33,8 @@ class ContentListPresenter @Inject constructor(private val contentUseCase: LoadC
         Log.d("Error", error.toString())
     }
 
-    private fun onRetrieveSuccess(result: List<Content>?) {
-        view.updateList(result!!)
+    private fun onRetrieveSuccess(content: Content?) {
+        view.updateView(content!!)
     }
 
     private fun onRetrieveFinish() {

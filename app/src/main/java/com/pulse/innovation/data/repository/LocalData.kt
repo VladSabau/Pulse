@@ -10,4 +10,8 @@ interface LocalData {
     fun getContentList(): Observable<List<Content>>
 
     fun insertContentList(contentList: List<Content>)
+
+    fun getContentById(contentId: Int): Observable<Content>
+
+    fun updateContent(content: Content)
 }

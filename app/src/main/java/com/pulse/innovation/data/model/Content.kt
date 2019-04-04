@@ -12,5 +12,6 @@ data class Content (
     @SerializedName("id") @PrimaryKey var id: Int = 0,
     @SerializedName("title") var title: String = "",
     @SerializedName("subtitle") var subtitle: String = "",
+    @SerializedName("body") var body: String = "",
     @SerializedName("date") var date: String = ""
 )

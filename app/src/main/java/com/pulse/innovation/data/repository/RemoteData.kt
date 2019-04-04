@@ -8,4 +8,6 @@ import io.reactivex.Observable
  */
 interface RemoteData {
     fun fetchContentList(): Observable<List<Content>>
+
+    fun fetchContentById(contentId: Int): Observable<Content>
 }

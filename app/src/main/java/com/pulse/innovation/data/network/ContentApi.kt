@@ -14,6 +14,6 @@ interface ContentApi {
     @GET("contentList.json")
     fun getContentList(): Observable<ContentListWrapper>
 
-    @GET("{id}.json")
+    @GET("content/{id}.json")
     fun getContentDetail(@Path("id") id: Int): Observable<ContentDetailWrapper>
 }
