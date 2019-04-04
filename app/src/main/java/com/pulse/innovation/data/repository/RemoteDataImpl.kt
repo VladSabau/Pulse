@@ -16,4 +16,11 @@ class RemoteDataImpl @Inject constructor(private val contentApi: ContentApi) :
                 Observable.just(contentList.items)
             }
     }
+
+    override fun fetchContentById(contentId: Int): Observable<Content> {
+        return contentApi.getContentDetail(contentId)
+            .concatMap { contentWrapper ->
+                Observable.just(contentWrapper.item)
+            }
+    }
 }

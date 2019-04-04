@@ -1,25 +1,26 @@
 package com.pulse.innovation.ui.contentlist
 
+import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.pulse.innovation.ContentApplication
 import com.pulse.innovation.R
 import com.pulse.innovation.data.model.Content
-import kotlinx.android.synthetic.main.activity_main.*
+import com.pulse.innovation.ui.BaseActivity
+import com.pulse.innovation.ui.contentdetail.ContentDetailActivity
+import kotlinx.android.synthetic.main.activity_list.*
 import javax.inject.Inject
 
-class ContentListActivity : AppCompatActivity(), ContentListView {
+class ContentListActivity : BaseActivity(), ContentListView, OnContentClickListener {
 
-    var adapter = ContentListAdapter()
+    var adapter = ContentListAdapter(this)
 
     @Inject
     lateinit var presenter: ContentListPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_list)
         ContentApplication.instance.getApplicationComponent().plusActivityComponent().inject(this)
 
         setAdapter()
@@ -35,11 +36,11 @@ class ContentListActivity : AppCompatActivity(), ContentListView {
         adapter.update(contentList)
     }
 
-    override fun showProgress(show: Boolean) {
-        if (show) {
-            progressBar.visibility = View.VISIBLE
-        } else {
-            progressBar.visibility = View.GONE
-        }
+    override fun openContentDetail(contentId: Int) {
+        val intentMileageCredit = Intent(this, ContentDetailActivity::class.java)
+        val data = Bundle()
+        data.putInt("content_id", contentId)
+        intentMileageCredit.putExtras(data)
+        startActivityForResult(intentMileageCredit, 1)
     }
 }

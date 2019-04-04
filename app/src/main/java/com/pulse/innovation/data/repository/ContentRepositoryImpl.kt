@@ -8,9 +8,10 @@ import javax.inject.Inject
 /**
  * Created by Vlad Sabau on 03.04.19.
  */
-class ContentListRepositoryImpl @Inject constructor(private val localData: LocalData,
-                                                    private val remoteData: RemoteData
-): ContentListRepository {
+class ContentRepositoryImpl @Inject constructor(private val localData: LocalData,
+                                                private val remoteData: RemoteData
+): ContentRepository {
+
     override fun loadContentList(): Observable<List<Content>>? {
         return getContentValid()
     }
@@ -26,6 +27,18 @@ class ContentListRepositoryImpl @Inject constructor(private val localData: Local
             .concatMap { contentList ->
                 localData.insertContentList(contentList)
                 Observable.just(contentList)
+            }
+    }
+
+    override fun loadContentById(contentId: Int): Observable<Content>? {
+        return fetchContentById(contentId)
+    }
+
+    private fun fetchContentById(contentId: Int): Observable<Content>? {
+        return remoteData.fetchContentById(contentId)
+            .concatMap { content ->
+                localData.updateContent(content)
+                Observable.just(content)
             }
     }
 }

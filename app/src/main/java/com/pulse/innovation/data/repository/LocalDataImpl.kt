@@ -10,12 +10,19 @@ import javax.inject.Inject
  */
 class LocalDataImpl @Inject constructor(private val contentsDao: ContentsDao) :
     LocalData {
-
     override fun getContentList(): Observable<List<Content>> {
         return Observable.fromCallable { contentsDao.all }
     }
 
     override fun insertContentList(contentList: List<Content>) {
         contentsDao.insertAll(contentList)
+    }
+
+    override fun getContentById(contentId: Int): Observable<Content> {
+        return Observable.fromCallable { contentsDao.getContentById(contentId) }
+    }
+
+    override fun updateContent(content: Content) {
+        contentsDao.update(content)
     }
 }
